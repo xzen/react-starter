@@ -12,7 +12,7 @@ class Search extends Component {
 
     axios.get(apiUrl)
       .then((response) => {
-        this.formatter(response.data.records)
+        console.log(this.formatEvents(response.data.records))
       })
       .catch((error) => {
         console.log(error)
@@ -20,11 +20,21 @@ class Search extends Component {
   }
 
   /**
-   * Formatter
-   * @param {Object} data
+   * Format events
+   * @param {Array} events
+   * @return {Array} eventsFormatted
    */
-  formatter(data) {
-    console.log(data)
+  formatEvents(events) {
+    return events.map(event => ({
+      id: event.recordid,
+      address: event.fields.address,
+      city: event.fields.city,
+      dateEnd: event.fields.date_end,
+      dateStart: event.fields.date_start,
+      description: event.fields.description,
+      image: event.fields.image,
+      title: event.fields.title
+    }))
   }
 
   render() {
