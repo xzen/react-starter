@@ -1,7 +1,27 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 
+import initialState from './initial-state'
+
 class Search extends Component {
+  constructor() {
+    super()
+
+    this.state = initialState
+  }
+
+  componentDidMount() {
+    const { data } = this.state
+
+    console.log('started data --->', data)
+  }
+
+  componentWillUpdate() {
+    const { data } = this.state
+
+    console.log('updated data --->', data)
+  }
+
   /**
    * Get data
    * @param {string} query
@@ -12,7 +32,9 @@ class Search extends Component {
 
     axios.get(apiUrl)
       .then((response) => {
-        console.log(this.formatEvents(response.data.records))
+        this.state.data = this.formatEvents(response.data.records)
+
+        this.forceUpdate()
       })
       .catch((error) => {
         console.log(error)
