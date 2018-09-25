@@ -1,23 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import List from './list'
+import Search from './search'
 
 import './index.scss'
 
-const list = [{
-  name: 'Cyril',
-  age: 31
-}, {
-  name: 'Echo',
-  age: 24
-}, {
-  name: 'Guillaume',
-  age: 12
-}]
-
 const App = () => (
-  <List list={list} />
+  <Search />
 )
 
 ReactDOM.render(<App />, document.getElementById('app'))
